@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 
-const Root = () => (
-  <div>
-     <h1>my portfolio</h1>
-  </div>
-);
+import './index.css';
+import HomePage from './Components/Home/HomePage';
+import AboutPage from './Components/About/AboutPage';
+import ExperiencePage from './Components/Experience/ExperiencePage';
+import ContactPage from './Components/Contact/ContactPage';
+import ProjectPage from './Components/Projects/ProjectPage';
+import ResumePage from './Components/Resume/ResumePage';
+import SkillsPage from './Components/Skills/SkillsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Root />);
+root.render(
+  <React.StrictMode>
+    <div>
+    <HomePage />
+    <AboutPage />
+    <ContactPage />
+    <ExperiencePage/>
+    <ProjectPage />
+    <ResumePage/>
+    <SkillsPage/>
+    </div>
+  </React.StrictMode>
+);
