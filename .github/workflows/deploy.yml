@@ -1,0 +1,48 @@
+name: Deploy on PR Merge
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Check for Changes in src folder
+      run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^src/' &> /dev/null; then
+            echo "Changes detected in the frontEnd folder. Proceeding with deployment."
+          else
+            echo "No changes in the frontEnd folder. Skipping deployment."
+          fi
+
+    - name: Set CI Environment Variable
+      run: echo "CI=false" >> $GITHUB_ENV
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+      
+    - name: Install Dependencies
+      run: |
+           cd frontEnd
+           npm install --save gh-pages
+
+    - name: build application
+      run: |
+          cd frontEnd
+          npm run build
+      
+    - name: Run Deploy Script
+      run: |
+          cd frontEnd
+          npm run deploy
