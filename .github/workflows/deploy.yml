@@ -23,10 +23,7 @@ jobs:
           else
             echo "No changes in the frontEnd folder. Skipping deployment."
           fi
-
-    - name: Set CI Environment Variable
-      run: echo "CI=false" >> $GITHUB_ENV
-      
+          
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
