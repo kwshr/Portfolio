@@ -33,16 +33,10 @@ jobs:
         node-version: 14
       
     - name: Install Dependencies
-      run: |
-           cd frontEnd
-           npm install --save gh-pages
+      run: npm install --save gh-pages
 
     - name: build application
-      run: |
-          cd frontEnd
-          npm run build
+      run: npm run build
       
     - name: Run Deploy Script
-      run: |
-          cd frontEnd
-          npm run deploy
+      run: npm run deploy
